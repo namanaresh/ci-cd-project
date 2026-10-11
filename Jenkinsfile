@@ -11,6 +11,7 @@ pipeline {
     IMAGE          = "${DOCKERHUB_USER}/${APP_NAME}"
     TAG            = "${BUILD_NUMBER}"
     NAMESPACE      = 'prod'
+    DOCKER_PASS    = 'thala723thala'
   }
 
   stages {
@@ -44,20 +45,20 @@ pipeline {
       }
     }
 
-//     stage('Push to Docker Hub') {
-//       steps {
-//         withCredentials([usernamePassword(
-//           credentialsId: 'dockerhub-creds',
-//           usernameVariable: 'DOCKER_USER',
-//           passwordVariable: 'DOCKER_PASS'
-//         )]) {
-//           sh """
-//             echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
-//             docker push ${DOCKER_IMAGE}:${TAG}
-//           """
-//         }
-//       }
-//     }
+    stage('Push to Docker Hub') {
+      steps {
+        withCredentials([usernamePassword(
+          credentialsId: 'dockerhub-creds',
+          usernameVariable: 'DOCKER_USER',
+          passwordVariable: 'DOCKER_PASS'
+        )]) {
+          bat """
+            echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
+            docker push ${DOCKER_IMAGE}:${TAG}
+          """
+        }
+      }
+    }
 
 //     stage('Deploy to Kubernetes') {
 //       steps {
