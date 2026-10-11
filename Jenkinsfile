@@ -98,5 +98,5 @@ pipeline {
 //         sh "kubectl rollout undo deployment/${APP_NAME} || true"
 //       }
 //     }
-//   }
-// }
+  }
+}
