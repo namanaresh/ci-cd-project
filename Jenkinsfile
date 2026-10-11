@@ -26,12 +26,12 @@ pipeline {
       }
     }
 
-//     stage('Build App') {
-//       steps {
-//         sh 'mvn clean package -DskipTests'
-//         archiveArtifacts artifacts: 'target/*.jar'
-//       }
-//     }
+    stage('Build App') {
+      steps {
+        sh 'mvn clean package -DskipTests'
+        archiveArtifacts artifacts: 'target/*.jar'
+      }
+    }
 
 //     stage('Build Docker Image') {
 //       steps {
