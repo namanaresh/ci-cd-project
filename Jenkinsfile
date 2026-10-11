@@ -6,11 +6,12 @@ pipeline {
   }
 
   environment {
-    DOCKERHUB_USER = 'nama7'
-    APP_NAME       = 'springboot-app'
-    DOCKER_IMAGE          = "${DOCKERHUB_USER}/${APP_NAME}"
-    TAG            = "${BUILD_NUMBER}"
-    NAMESPACE      = 'prod'
+    DOCKERHUB_USER   = 'nama7'
+    APP_NAME         = 'springboot-app'
+    DOCKER_IMAGE     = "${DOCKERHUB_USER}/${APP_NAME}"
+    TAG              = "${BUILD_NUMBER}"
+    KUBE_NAMESPACE   = 'prod'
+    KUBE_CONTEXT     = 'kind-cilium-lab'
     
   }
 
@@ -56,17 +57,17 @@ pipeline {
       }
     }
 
-//     stage('Deploy to Kubernetes') {
-//       steps {
-//         sh """
-//           kubectl config use-context ${KUBE_CONTEXT}
-//           kubectl config set-context --current --namespace=${KUBE_NAMESPACE}
-//           sed 's|__TAG__|${TAG}|g' k8s/deployment.yaml > k8s/rendered-deployment.yaml
-//           kubectl apply -f k8s/rendered-deployment.yaml
-//           kubectl apply -f k8s/service.yaml
-//         """
-//       }
-//     }
+    stage('Deploy to Kubernetes') {
+      steps {
+        bat """
+          kubectl config use-context ${KUBE_CONTEXT}
+          kubectl config set-context --current --namespace=${KUBE_NAMESPACE}
+          sed 's|__TAG__|${TAG}|g' k8s/deployment.yaml > k8s/rendered-deployment.yaml
+          kubectl apply -f k8s/rendered-deployment.yaml
+          kubectl apply -f k8s/service.yaml
+        """
+      }
+    }
 
 //     stage('Verify Deployment') {
 //       steps {
