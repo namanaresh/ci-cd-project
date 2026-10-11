@@ -36,9 +36,9 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         bat """
-          DOCKER_BUILDKIT=1 docker build \
-            -t ${IMAGE}:${TAG} \
-            --label commit=${COMMIT_HASH} \
+          set DOCKER_BUILDKIT=1 docker build ^
+            -t ${IMAGE}:${TAG} ^
+            --label commit=${COMMIT_HASH} ^
             .
         """
       }
