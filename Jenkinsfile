@@ -28,7 +28,7 @@ pipeline {
 
     stage('Build App') {
       steps {
-        sh 'mvn clean package -DskipTests'
+        bat 'mvn clean package -DskipTests'
         archiveArtifacts artifacts: 'target/*.jar'
       }
     }
