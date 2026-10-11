@@ -37,7 +37,7 @@ pipeline {
       steps {
         bat """
           DOCKER_BUILDKIT=1 docker build \
-            -t ${DOCKER_IMAGE}:${TAG} \
+            -t ${IMAGE}:${TAG} \
             --label commit=${COMMIT_HASH} \
             .
         """
