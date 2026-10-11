@@ -6,7 +6,7 @@ pipeline {
   }
 
   environment {
-    DOCKERHUB_USER = ''
+    DOCKERHUB_USER = 'nama7'
     APP_NAME       = 'springboot-app'
     IMAGE          = "${DOCKERHUB_USER}/${APP_NAME}"
     TAG            = "${BUILD_NUMBER}"
