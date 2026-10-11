@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-demo
-  namespace: default  # Must match Jenkins KUBE_NAMESPACE
+  namespace: prod  # Must match Jenkins KUBE_NAMESPACE
   labels:
     app: spring-demo
     tier: backend
@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: spring-demo
-          image: sbenaissa/spring-demo:latest  # Jenkins will replace latest
+          image: nama7/springboot:latest  # Jenkins will replace latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
