@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: spring-demo
-          image: nama7/springboot:__TAG__  
+          image: nama7/springboot-app:__TAG__  
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
