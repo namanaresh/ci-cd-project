@@ -6,12 +6,12 @@ pipeline {
   }
 
   environment {
-    DOCKERHUB_USER = 'nama7'
+    DOCKERHUB_USER = ''
     APP_NAME       = 'springboot-app'
     IMAGE          = "${DOCKERHUB_USER}/${APP_NAME}"
     TAG            = "${BUILD_NUMBER}"
     NAMESPACE      = 'prod'
-    DOCKER_PASS    = 'thala723thala'
+    DOCKER_PASS    = ''
   }
 
   stages {
@@ -48,7 +48,7 @@ pipeline {
     stage('Push to Docker Hub') {
       steps {
         withCredentials([usernamePassword(
-          credentialsId: 'dockerhub-creds',
+          credentialsId: '30df0937-c64c-48a6-baaf-a594a04f86c4',
           usernameVariable: 'DOCKER_USER',
           passwordVariable: 'DOCKER_PASS'
         )]) {
