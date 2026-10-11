@@ -60,9 +60,9 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
         bat """
-          kubectl config use-context ${KUBE_CONTEXT}
-          kubectl config set-context --current --namespace=${KUBE_NAMESPACE}
-          sed 's|__TAG__|${TAG}|g' k8s/deployment.yaml > k8s/rendered-deployment.yaml
+          kubectl config use-context %KUBE_CONTEXT%
+          kubectl config set-context --current --namespace=%KUBE_NAMESPACE%
+          sed 's|__TAG__|%TAG%|g' k8s/deployment.yaml > k8s/rendered-deployment.yaml
           kubectl apply -f k8s/rendered-deployment.yaml
           kubectl apply -f k8s/service.yaml
         """
