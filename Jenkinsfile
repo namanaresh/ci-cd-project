@@ -58,6 +58,9 @@ pipeline {
     }
 
     stage('Deploy to Kubernetes') {
+      environment {
+        KUBECONFIG = "C:\\Users\\nares\\.kube\\config"
+      }  
       steps {
         bat """
           kubectl config use-context %KUBE_CONTEXT%
