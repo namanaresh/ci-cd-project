@@ -2,7 +2,7 @@
 FROM eclipse-temurin:17-jdk-jammy
 
 # Create a non-root user for running the app securely
-RUN useradd -u 1001 -m springuser
+RUN useradd -u 1000 -m springuser
 
 # Set working directory
 WORKDIR /app
