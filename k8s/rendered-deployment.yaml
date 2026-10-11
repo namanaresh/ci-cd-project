@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: spring-demo
-          image: nama7/springboot:latest  # Jenkins will replace latest
+          image: nama7/springboot-app:latest  # Jenkins will replace latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
