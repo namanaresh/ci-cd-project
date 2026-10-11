@@ -65,9 +65,8 @@ pipeline {
         bat """
           kubectl config use-context %KUBE_CONTEXT%
           kubectl config set-context --current --namespace=%KUBE_NAMESPACE%
-          bat """
-            powershell -Command "(Get-Content k8s/deployment.yaml) -replace '__TAG__', '%TAG%' | Set-Content k8s/rendered-deployment.yaml"
-          """
+          powershell -Command "(Get-Content k8s/deployment.yaml) -replace '__TAG__', '%TAG%' | Set-Content k8s/rendered-deployment.yaml"
+        
           kubectl apply -f k8s/rendered-deployment.yaml
           kubectl apply -f k8s/service.yaml
         """
