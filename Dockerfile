@@ -2,7 +2,7 @@
 FROM eclipse-temurin:17-jdk-jammy
 
 # Create a non-root user for running the app securely
-RUN useradd -m springuser
+RUN useradd -u 1001 -m springuser
 
 # Set working directory
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y curl && \
 
 # Set proper permissions and switch to non-root user
 RUN chown -R springuser:springuser /app
-USER springuser
+USER 1000
 
 # Define the entrypoint to run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
